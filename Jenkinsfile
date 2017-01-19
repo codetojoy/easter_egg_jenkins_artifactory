@@ -18,8 +18,9 @@ node {
 
         def gradleHome = tool "G31"
         def tasks = "clean build publishCodetojoyPublicationToRemoteArtifactoryRepository"
-        def command = "${gradleHome}/bin/gradle ${tasks} -p utils"
-        sh command
+
+        sh "${gradleHome}/bin/gradle ${tasks} -p utils"
+        sh "${gradleHome}/bin/gradle ${tasks} -p component"
     }
 }
 
