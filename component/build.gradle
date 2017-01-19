@@ -22,23 +22,23 @@ repositories {
 }
 
 dependencies {
-    compile 'org.apache.commons:commons-lang3:3.5'
-    testCompile 'junit:junit:4.12'
+    compile 'org.apache.httpcomponents:httpclient:4.5.2'
+    compile "net.codetojoy:utils:${project.version}"
 }
 
-archivesBaseName = 'utils'
-def thisArtifactId  = 'utils'
+archivesBaseName = 'web-component'
+def thisArtifactId  = 'web-component'
 group = 'net.codetojoy'
 
 // see ~/gradle/version.gradle
 version = project.version
 
 compileJava.doFirst {
-    def newBuildInfoFile = new File("${projectDir}/src/main/java/net/codetojoy/utils/BuildInfo.java")
+    def newBuildInfoFile = new File("${projectDir}/src/main/java/net/codetojoy/component/BuildInfo.java")
     def templateBuildInfoFile = new File("${projectDir}/resources/TemplateBuildInfo.java")
     newBuildInfoFile.withWriter { def writer ->
         templateBuildInfoFile.eachLine { def line ->
-            def newLine = line.replace("__PACKAGE","net.codetojoy.utils")
+            def newLine = line.replace("__PACKAGE","net.codetojoy.component")
                               .replace("__ARTIFACT",thisArtifactId)
                               .replace("__VERSION",project.version)
                               .replace("__BUILD_TIMESTAMP",buildTimeStamp)
