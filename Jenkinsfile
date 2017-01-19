@@ -16,9 +16,8 @@ node {
         "TRUNK_BUILD_NUMBER=2"]) {
 
         def gradleHome = tool "G31"
-        // def target = "publishCodetojoyPublicationToRemoteArtifactoryRepository"
-        def target = "clean build"
-        def command = "${gradleHome}/bin/gradle clean ${target} -p utils"
+        def tasks = "clean build publishCodetojoyPublicationToRemoteArtifactoryRepository"
+        def command = "${gradleHome}/bin/gradle ${tasks} -p utils"
         sh command
     }
 }
