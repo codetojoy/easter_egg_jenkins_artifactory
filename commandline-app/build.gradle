@@ -1,0 +1,38 @@
+
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+mainClassName = "net.codetojoy.Main"
+
+allprojects {
+    apply from: "${rootDir}/gradle/version.gradle"
+}
+
+repositories {
+    maven {
+        name "remoteArtifactory"
+        url REPOSITORY_URL
+
+        credentials {
+            username = artifactoryUsername
+            password = artifactoryPassword
+        }
+    }
+
+    mavenCentral()
+}
+
+dependencies {
+    compile "net.codetojoy:web-component:${project.version}"
+
+    compile 'org.codehaus.groovy:groovy-all:2.4.5'
+}
+
+installDist.doFirst {
+    ant.delete(dir: project.stagingDir)
+}
+
+installDist {
+    into project.stagingDir
+}
+
