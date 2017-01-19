@@ -33,6 +33,19 @@ group = 'net.codetojoy'
 // see ~/gradle/version.gradle
 version = project.version
 
+compileJava.doFirst {
+    def newBuildInfoFile = new File("${projectDir}/src/main/java/net/codetojoy/utils/BuildInfo.java")
+    def templateBuildInfoFile = new File("${projectDir}/resources/TemplateBuildInfo.java")
+    newBuildInfoFile.withWriter { def writer ->
+        templateBuildInfoFile.eachLine { def line ->
+            def newLine = line.replace("__PACKAGE","net.codetojoy.utils")
+                              .replace("__VERSION",project.version)
+                              .replace("__BUILD_TIMESTAMP",buildTimeStamp)
+            writer.write(newLine + "\n");
+        }
+    }
+}
+
 // -----------------------------------------
 
 distributions {
