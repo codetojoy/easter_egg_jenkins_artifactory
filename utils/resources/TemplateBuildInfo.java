@@ -9,10 +9,9 @@ public class BuildInfo {
     public String toString() {
         StringBuilder buffer = new StringBuilder();
 
-        buffer.append("artifact: " + artifact);
-        buffer.append("version: " + version);
-        buffer.append(" build timestamp: " + buildTimestamp);
-        buffer.append("\n\n");
+        buffer.append("artifact: " + artifact + "\n");
+        buffer.append("version: " + version + "\n");
+        buffer.append("build timestamp: " + buildTimestamp + "\n");
 
         return buffer.toString();
     }

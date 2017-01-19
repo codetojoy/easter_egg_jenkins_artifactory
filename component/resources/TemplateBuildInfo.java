@@ -11,10 +11,9 @@ public class BuildInfo {
 
         String utilsBuildInfo = new net.codetojoy.utils.BuildInfo().toString();
         buffer.append(utilsBuildInfo);
-        buffer.append("artifact: " + artifact);
-        buffer.append("version: " + version);
-        buffer.append(" build timestamp: " + buildTimestamp);
-        buffer.append("\n\n");
+        buffer.append("\nartifact: " + artifact + "\n");
+        buffer.append("version: " + version + "\n");
+        buffer.append("build timestamp: " + buildTimestamp + "\n");
 
         return buffer.toString();
     }
