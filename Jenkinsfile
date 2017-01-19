@@ -11,7 +11,7 @@ node {
     withEnv([
         "TRUNK_MAJOR_VERSION=0",
         "TRUNK_MINOR_VERSION=9",
-        "TRUNK_INCREMENTAL_VERSION=2",
+        "TRUNK_INCREMENTAL_VERSION=4",
         "TRUNK_QUALIFIER=SNAPSHOT",
         "TRUNK_BUILD_NUMBER=${env.BUILD_NUMBER}"
         ]) {
@@ -21,6 +21,9 @@ node {
 
         sh "${gradleHome}/bin/gradle ${tasks} -p utils"
         sh "${gradleHome}/bin/gradle ${tasks} -p component"
+
+        tasks = "clean war publishCodetojoyEasyWebPublicationToRemoteArtifactoryRepository"
+        sh "${gradleHome}/bin/gradle ${tasks} -p web"
     }
 }
 
