@@ -12,7 +12,7 @@ node {
         "TRUNK_MAJOR_VERSION=0",
         "TRUNK_MINOR_VERSION=9",
         "TRUNK_INCREMENTAL_VERSION=2",
-        "TRUNK_QUALIFIER=RELEASE",
+        "TRUNK_QUALIFIER=SNAPSHOT",
         "TRUNK_BUILD_NUMBER=${env.BUILD_NUMBER}"
         ]) {
 
