@@ -27,14 +27,6 @@ node {
     }
 }
 
-stage "initialize"
-node {
-    // sh "chmod 777 ${env.WORKSPACE}/resources/deploy.sh"
-    sh "chmod 777 ${env.WORKSPACE}/resources/stage.sh"
-}
-
-/*
-
 // -------------------------- DEV (auto-deploy)
 stage "auto-deploy for DEV"
 node {
@@ -44,9 +36,10 @@ node {
     def DEST_DIR = "${env.WORKSPACE}/../../userContent/share"
 
     sh "${env.WORKSPACE}/resources/stage.sh $ENV ${env.BUILD_NUMBER} $SRC_DIR $DEST_DIR"
-    sh "${env.WORKSPACE}/resources/deploy.sh $ENV ${env.BUILD_NUMBER}"
+    // sh "${env.WORKSPACE}/resources/deploy.sh $ENV ${env.BUILD_NUMBER}"
 }
 
+/*
 // -------------------------- QA
 stage "deploy to QA"
 timeout(time:2, unit:'DAYS') {
