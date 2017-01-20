@@ -30,7 +30,7 @@ node {
 stage "initialize"
 node {
     sh "chmod 777 ${env.WORKSPACE}/resources/stage.sh"
-    // sh "chmod 777 ${env.WORKSPACE}/resources/deploy.sh"
+    sh "chmod 777 ${env.WORKSPACE}/resources/deploy.sh"
 }
 
 // -------------------------- DEV (auto-deploy)
@@ -42,10 +42,9 @@ node {
     def DEST_DIR = "${env.WORKSPACE}/../../userContent/share"
 
     sh "${env.WORKSPACE}/resources/stage.sh $ENV ${env.BUILD_NUMBER} $SRC_DIR $DEST_DIR"
-    // sh "${env.WORKSPACE}/resources/deploy.sh $ENV ${env.BUILD_NUMBER}"
+    sh "${env.WORKSPACE}/resources/deploy.sh $ENV ${env.BUILD_NUMBER}"
 }
 
-/*
 // -------------------------- QA
 stage "deploy to QA"
 timeout(time:2, unit:'DAYS') {
@@ -55,7 +54,7 @@ timeout(time:2, unit:'DAYS') {
 node {
     env.WORKSPACE = pwd()
     def ENV = "QA"
-    def SRC_DIR = "${env.WORKSPACE}/build/libs" 
+    def SRC_DIR = "${env.WORKSPACE}/web/build/libs" 
     def DEST_DIR = "${env.WORKSPACE}/../../userContent/share"
 
     sh "${env.WORKSPACE}/resources/stage.sh $ENV ${env.BUILD_NUMBER} $SRC_DIR $DEST_DIR"
@@ -71,13 +70,12 @@ timeout(time:2, unit:'DAYS') {
 node {
     env.WORKSPACE = pwd()
     def ENV = "UAT"
-    def SRC_DIR = "${env.WORKSPACE}/build/libs" 
+    def SRC_DIR = "${env.WORKSPACE}/web/build/libs" 
     def DEST_DIR = "${env.WORKSPACE}/../../userContent/share"
 
     sh "${env.WORKSPACE}/resources/stage.sh $ENV ${env.BUILD_NUMBER} $SRC_DIR $DEST_DIR"
     sh "${env.WORKSPACE}/resources/deploy.sh $ENV ${env.BUILD_NUMBER}"
 }
-*/
 
 
 
