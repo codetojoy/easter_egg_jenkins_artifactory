@@ -29,8 +29,8 @@ node {
 
 stage "initialize"
 node {
-    sh "chmod 777 ${env.WORKSPACE}/resources/deploy.sh"
     sh "chmod 777 ${env.WORKSPACE}/resources/stage.sh"
+    // sh "chmod 777 ${env.WORKSPACE}/resources/deploy.sh"
 }
 
 // -------------------------- DEV (auto-deploy)
