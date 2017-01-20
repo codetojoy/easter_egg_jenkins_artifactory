@@ -38,7 +38,7 @@ stage "auto-deploy for DEV"
 node {
     env.WORKSPACE = pwd() // See https://issues.jenkins-ci.org/browse/JENKINS-33511
     def ENV = "DEV"
-    def SRC_DIR = "${env.WORKSPACE}/build/libs" 
+    def SRC_DIR = "${env.WORKSPACE}/web/build/libs" 
     def DEST_DIR = "${env.WORKSPACE}/../../userContent/share"
 
     sh "${env.WORKSPACE}/resources/stage.sh $ENV ${env.BUILD_NUMBER} $SRC_DIR $DEST_DIR"
