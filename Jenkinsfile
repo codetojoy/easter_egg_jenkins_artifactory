@@ -8,11 +8,6 @@ node {
 
 stage "build"
 node {
-    def rootDir = pwd()
-    def envVars = load "${rootDir}/EnvVars.groovy"
-    def TRUNK_MINOR_VERSION = envVars.readEnvVarFromScript("setvars.sh", "TRUNK_MINOR_VERSION")
-    sh "echo 'TRACER TRUNK_MINOR_VERSION: ${TRUNK_MINOR_VERSION}'"
-
     withEnv([
         "TRUNK_MAJOR_VERSION=0",
         "TRUNK_MINOR_VERSION=9",
