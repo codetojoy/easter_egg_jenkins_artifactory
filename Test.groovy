@@ -1,5 +1,5 @@
 
-def readEnvVarFromScript = { file, key ->
+def readEnvVarFromScript(file, key) {
     def result = "unknown"
     file.eachLine { line ->
         def matcher = (line =~ "${key}=(.*)")

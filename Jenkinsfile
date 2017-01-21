@@ -10,7 +10,7 @@ stage "build"
 node {
     def rootDir = pwd()
     def myTest = load "${rootDir}@script/Test.groovy"
-    def x = readEnvVarFromScript("test.sh", "FOO")
+    def x = myTest.readEnvVarFromScript("test.sh", "FOO")
     sh "echo 'TRACER ${x}'"
 
 
