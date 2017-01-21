@@ -1,12 +1,5 @@
 
 def readEnvVarFromScript(file, key) {
-    return "HI THERE"
-}
-
-return this
-
-/*
-def readEnvVarFromScript(file, key) {
     def result = "unknown"
     new File(file).eachLine { line ->
         println line
@@ -17,6 +10,6 @@ def readEnvVarFromScript(file, key) {
     }
     return result
 }
-*/
 
-// println readEnvVarFromScript("test.sh", "FOO")
+return this
+

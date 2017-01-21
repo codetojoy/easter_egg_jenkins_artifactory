@@ -9,10 +9,9 @@ node {
 stage "build"
 node {
     def rootDir = pwd()
-    def myTest = load "${rootDir}/Test.groovy"
-    sh "echo 'TRACER cp 0 ${myTest}'"
-    def x = myTest.readEnvVarFromScript("test.sh", "FOO")
-    sh "echo 'TRACER ${x}'"
+    def envVarFromFile = load "${rootDir}/EnvVarFromFile.groovy"
+    def TRUNK_MINOR_VERSION = myTest.readEnvVarFromScript("setvars.sh", "TRUNK_MINOR_VERSION")
+    sh "echo 'TRACER TRUNK_MINOR_VERSION: ${TRUNK_MINOR_VERSION}'"
 
     withEnv([
         "TRUNK_MAJOR_VERSION=0",
