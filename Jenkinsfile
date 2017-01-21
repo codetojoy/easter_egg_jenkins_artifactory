@@ -9,7 +9,7 @@ node {
 stage "build"
 node {
     sh ". ./test.sh"
-    sh "echo $FOO"
+    sh 'echo $FOO'
     withEnv([
         "TRUNK_MAJOR_VERSION=0",
         "TRUNK_MINOR_VERSION=9",
