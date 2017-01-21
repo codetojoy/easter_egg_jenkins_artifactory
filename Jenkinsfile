@@ -9,12 +9,10 @@ node {
 stage "build"
 node {
     def rootDir = pwd()
-    def myFile =  new File("${rootDir}@script/Test.groovy")
-    sh "echo EXISTS ${myFile.exists()}"
     def myTest = load "${rootDir}@script/Test.groovy"
+    sh "echo 'TRACER cp 0 ${myTest}'"
     def x = myTest.readEnvVarFromScript("test.sh", "FOO")
     sh "echo 'TRACER ${x}'"
-
 
     withEnv([
         "TRUNK_MAJOR_VERSION=0",
