@@ -9,6 +9,8 @@ node {
 stage "build"
 node {
     def rootDir = pwd()
+    def myFile =  "${rootDir}@script/Test.groovy"
+    sh "echo EXISTS ${myFile.exists()}"
     def myTest = load "${rootDir}@script/Test.groovy"
     def x = myTest.readEnvVarFromScript("test.sh", "FOO")
     sh "echo 'TRACER ${x}'"
