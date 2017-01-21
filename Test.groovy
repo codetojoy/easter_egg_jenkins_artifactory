@@ -3,6 +3,8 @@ def readEnvVarFromScript(file, key) {
     return "HI THERE"
 }
 
+return this
+
 /*
 def readEnvVarFromScript(file, key) {
     def result = "unknown"
