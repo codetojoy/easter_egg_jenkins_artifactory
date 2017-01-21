@@ -9,7 +9,7 @@ node {
 stage "build"
 node {
     def rootDir = pwd()
-    def myTest = load "${rootDir}@script/Test.groovy"
+    def myTest = load "${rootDir}/Test.groovy"
     sh "echo 'TRACER cp 0 ${myTest}'"
     def x = myTest.readEnvVarFromScript("test.sh", "FOO")
     sh "echo 'TRACER ${x}'"
