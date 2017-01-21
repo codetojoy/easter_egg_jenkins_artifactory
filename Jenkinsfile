@@ -6,22 +6,14 @@ node {
     git url: "https://github.com/codetojoy/easter_egg_jenkins_artifactory.git"
 }
 
-def readEnvVarFromScript = { file, key ->
-    def result = ""
-    file.eachLine { line ->
-        def matcher = (line =~ "${key}=(.*)")
-        if (matcher.matches()) {
-            result = matcher[0][1].trim()
-        }
-    }
-    return result
-}
-
-def x = readEnvVarFromScript("./test.sh", "FOO")
-
 stage "build"
 node {
+    def rootDir = pwd()
+    def myTest = load "${rootDir}@script/Test.groovy"
+    def x = readEnvVarFromScript("test.sh", "FOO")
     sh "echo 'TRACER ${x}'"
+
+
     withEnv([
         "TRUNK_MAJOR_VERSION=0",
         "TRUNK_MINOR_VERSION=9",
