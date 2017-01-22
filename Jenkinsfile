@@ -11,7 +11,7 @@ node {
     withEnv([
         "TRUNK_MAJOR_VERSION=0",
         "TRUNK_MINOR_VERSION=9",
-        "TRUNK_INCREMENTAL_VERSION=4",
+        "TRUNK_INCREMENTAL_VERSION=5",
         "TRUNK_QUALIFIER=SNAPSHOT",
         "TRUNK_BUILD_NUMBER=${env.BUILD_NUMBER}"
         ]) {

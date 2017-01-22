@@ -6,6 +6,8 @@ apply plugin: 'maven-publish'
 apply from: "${rootDir}/gradle/version.gradle"
 
 repositories {
+    mavenLocal() 
+
     maven {
         name "remoteArtifactory"
         url REPOSITORY_URL
