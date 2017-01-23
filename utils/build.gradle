@@ -5,6 +5,7 @@ apply plugin: 'maven-publish'
 
 allprojects {
     apply from: "${rootDir}/gradle/version.gradle"
+    apply from: "${rootDir}/gradle/info.gradle"
 }
 
 repositories {
@@ -64,6 +65,10 @@ publishing {
         codetojoy(MavenPublication) {
             from components.java 
             artifactId thisArtifactId
+
+            pom.withXml {
+                asNode().appendNode('buildTimestamp',buildTimeStamp)
+            }
         }
     }
 

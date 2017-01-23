@@ -1,0 +1,21 @@
+
+task repositoriesInfo {  
+    description 'Display information about repositories'  
+    doFirst {    
+        // Access repositories as collection.    
+        project.repositories.each {      
+            // Display name and URL for each      
+            // repository.      
+            println "'${it.name}' uses URL ${it.url}"    
+        }
+    }
+}
+
+task artifactsInfo << {
+  configurations
+    .findByName('archives')
+    .allArtifacts
+    .each { artifact ->
+      println artifact.file.name
+    }
+}
