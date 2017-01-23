@@ -9,6 +9,8 @@ allprojects {
 }
 
 repositories {
+    mavenLocal() 
+
     maven {
         name "remoteArtifactory"
         url REPOSITORY_URL
