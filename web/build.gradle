@@ -4,6 +4,7 @@ apply plugin: 'jetty'
 apply plugin: 'maven-publish'
 
 apply from: "${rootDir}/gradle/version.gradle"
+apply from: "${rootDir}/gradle/info.gradle"
 
 repositories {
     mavenLocal() 
@@ -61,8 +62,8 @@ publishing {
 
             pom.withXml {
                 def root = asNode()
-                root.appendNode('name', 'simple User webapp')
-                root.appendNode('description', 'misc descriptive text here')
+                root.appendNode('properties')
+                    .appendNode('buildTimeStamp', buildTimeStamp)
             }
         }
     }
