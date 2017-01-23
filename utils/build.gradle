@@ -67,7 +67,8 @@ publishing {
             artifactId thisArtifactId
 
             pom.withXml {
-                asNode().appendNode('buildTimestamp',buildTimeStamp)
+                asNode().appendNode('properties')
+                        .appendNode('buildTimestamp',buildTimeStamp)
             }
         }
     }
