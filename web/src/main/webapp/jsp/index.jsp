@@ -1,9 +1,13 @@
 <%@ page language="java" import="java.util.*" %> 
 <%@ page language="java" import="java.util.regex.*" %> 
+<%@ page language="java" import="java.time.*" %> 
+<%@ page language="java" import="java.time.format.*" %> 
 <%@ page language="java" import="net.codetojoy.component.WebComponent" %> 
 <%@ page language="java" import="net.codetojoy.web.BuildInfo" %> 
 
 <% 
+// ------------- ENV label / CSS
+
 final String ENV_LOCAL = "5150";
 final String ENV_DEV = "5555";
 final String ENV_QA = "5566";
@@ -39,6 +43,16 @@ if (matcher.matches()) {
     }
 }
 
+// ------------- current time in America/Halifax
+
+Instant nowInstant = new Date().toInstant();
+ZoneId zoneId = ZoneId.of("America/Halifax");
+ZonedDateTime halifaxTime = ZonedDateTime.ofInstant(nowInstant, zoneId);
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("KK:mm:ss dd-MMM-yyyy");
+String currentTime = halifaxTime.format(formatter);
+
+// ------------- test WebComponent
+
 String url = WebComponent.TEST_URL;
 String jsonBody = WebComponent.TEST_JSON;
 String result = new WebComponent().doHTTPPost(url, jsonBody);
@@ -67,7 +81,7 @@ String buildInfo = new BuildInfo().toString();
 
 <h3>Current Time:</h3>
 <pre>
-<%= new Date() %>
+<%= currentTime %>
 </pre>
 
 </body>
