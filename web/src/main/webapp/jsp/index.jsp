@@ -4,20 +4,38 @@
 <%@ page language="java" import="net.codetojoy.web.BuildInfo" %> 
 
 <% 
+final String ENV_LOCAL = "5150";
+final String ENV_DEV = "5555";
+final String ENV_QA = "5566";
+final String ENV_UAT = "5577";
+
+Map<String,String> colorMap = new HashMap<String,String>();
+colorMap.put("5150", "#b9fb9d");     // local green    
+colorMap.put("5555", "#fbdb9b");     // DEV tan
+colorMap.put("5566", "#9dc4f9");     // QA blue
+colorMap.put("5577", "#b9fb9d");     // UAT green
+
+Map<String,String> labelMap = new HashMap<String,String>();
+labelMap.put("5150", "LOCAL");
+labelMap.put("5555", "DEV");
+labelMap.put("5566", "QA");
+labelMap.put("5577", "UAT");
+ 
 // NOTE: The Jetty plugin doesn't seem to like Pattern (!?)
 Pattern regex = Pattern.compile(".*:(\\d\\d\\d\\d).*");
 String requestURL = request.getRequestURL().toString();
 Matcher matcher = regex.matcher(requestURL);
+
 String backgroundColor = "white";
+String env = "?";
+
 if (matcher.matches()) {
-    Map<String,String> map = new HashMap<String,String>();
-    map.put("5150", "#b9fb9d");     // local green    
-    map.put("5555", "#fbdb9b");     // DEV tan
-    map.put("5566", "#9dc4f9");     // QA blue
-    map.put("5577", "#b9fb9d");     // UAT green
     String port = matcher.group(1); 
-    if (map.keySet().contains(port)) {
-        backgroundColor = map.get(port);
+    if (colorMap.keySet().contains(port)) {
+        backgroundColor = colorMap.get(port);
+    }
+    if (labelMap.keySet().contains(port)) {
+        env = labelMap.get(port);
     }
 }
 
@@ -29,6 +47,10 @@ String buildInfo = new BuildInfo().toString();
 %>
 
 <html>
+<head>
+  <title>ENV: <%= env %></title>
+</head>
+
 <body style="background-color:<%= backgroundColor %>;">
 
 <h3>HTTP post:</h3>
