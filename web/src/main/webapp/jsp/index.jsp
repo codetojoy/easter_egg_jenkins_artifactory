@@ -48,7 +48,7 @@ if (matcher.matches()) {
 Instant nowInstant = new Date().toInstant();
 ZoneId zoneId = ZoneId.of("America/Halifax");
 ZonedDateTime halifaxTime = ZonedDateTime.ofInstant(nowInstant, zoneId);
-DateTimeFormatter formatter = DateTimeFormatter.ofPattern("KK:mm:ss dd-MMM-yyyy");
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("kk:mm:ss a dd-MMM-yyyy");
 String currentTime = halifaxTime.format(formatter);
 
 // ------------- test WebComponent
